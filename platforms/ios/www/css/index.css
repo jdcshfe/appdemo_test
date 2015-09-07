@@ -48,6 +48,8 @@ ul, li { list-style: none; padding: 0; margin: 0; }
 
 .banner { position: relative; overflow: hidden; padding-top: 50%; }
 
+.banner_img li { position: absolute; }
+
 .banner_img { position: absolute; left: 0; top: 0; right: 0; transition: all 0.5s; -webkit-transition: all 0.5s; }
 
 .banner_img li { float: left; }
@@ -81,6 +83,8 @@ ul, li { list-style: none; padding: 0; margin: 0; }
 .slidetop { opacity: 1; }
 
 .bns_3 { position: relative; overflow: hidden; padding-top: 39.41%; overflow-x: scroll; }
+
+.bns_3::-webkit-scrollbar { display: none; }
 
 .bns_3 .its { position: absolute; left: 0; right: 0; top: 0; }
 

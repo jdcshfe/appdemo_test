@@ -169,6 +169,9 @@ ul ,li{
     overflow: hidden;
     padding-top: 50%;
 }
+.banner_img li{
+    position:absolute;
+}
 .banner_img{
     position: absolute;
     left: 0;
@@ -250,6 +253,7 @@ ul ,li{
     padding-top: 39.41%;
     overflow-x: scroll;
 }
+.bns_3::-webkit-scrollbar {display:none;}
 .bns_3 .its{
     position:absolute;
     left:0;
