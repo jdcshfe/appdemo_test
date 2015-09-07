@@ -70,6 +70,16 @@ ul, li { list-style: none; padding: 0; margin: 0; }
 
 .wrap_bg { background-color: #fff; }
 
+.bns_2 .ms_time { position: absolute; height: 100px; width: 21%; top: 10%; left: 21.6%; }
+
+.bns_2 .ms_time span { position: absolute; display: block; width: 30%; height: 30px; }
+
+.bns_2 .ms_time .hour { left: 2%; }
+
+.bns_2 .ms_time .minute { left: 35%; }
+
+.bns_2 .ms_time .second { left: 68%; }
+
 .bnt { position: relative; overflow: hidden; padding-top: 84.1%; }
 
 .bnt .wrap { padding: 0 10px; }
