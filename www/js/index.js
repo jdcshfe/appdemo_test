@@ -150,12 +150,27 @@ function rightslide(){
 function lunbo(){
     leftslide(); 
 }
+var m=42;
+function msTime(){
+    var date = new Date();
+    var day = date.getDate();
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    var sec = date.getSeconds();
+    if(m==-1) m=59;
+    $('.minute').html(m);
+    if((59-sec)==0) m--;
+    $('.hour').html(hour);
+    $('.second').html(59-sec);
+}
 window.onload=function(){
     $('.banner_1').css("left",0+"px");
     $('.banner_2').css("left",width+"px");
     $('.banner_3').css("left",2*width+"px");
     $('.banner_4').css("left",3*width+"px");
     time=setInterval(function(){lunbo();},3000);
+    msTime();
+    setInterval(function(){msTime();},1000);
 }
 var banner = document.getElementById("banner");
 var x=0,y=0;

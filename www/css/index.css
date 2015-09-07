@@ -72,7 +72,7 @@ ul, li { list-style: none; padding: 0; margin: 0; }
 
 .bns_2 .ms_time { position: absolute; height: 100px; width: 21%; top: 10%; left: 21.6%; }
 
-.bns_2 .ms_time span { position: absolute; display: block; width: 30%; height: 30px; }
+.bns_2 .ms_time span { position: absolute; display: block; width: 30%; height: 20%; font-size: 16px; text-align: center; line-height: 20px; background-color: #CDCDCD; }
 
 .bns_2 .ms_time .hour { left: 2%; }
 
