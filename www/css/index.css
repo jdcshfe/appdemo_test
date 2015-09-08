@@ -48,9 +48,9 @@ ul, li { list-style: none; padding: 0; margin: 0; }
 
 .banner { position: relative; overflow: hidden; padding-top: 50%; }
 
-.banner_img li { position: absolute; }
+.banner_img { position: absolute; left: 0; top: 0; right: 0; }
 
-.banner_img { position: absolute; left: 0; top: 0; right: 0; transition: all 0.5s; -webkit-transition: all 0.5s; }
+.active { transition: all 0.5s; -webkit-transition: all 0.5s; }
 
 .banner_img li { float: left; }
 
@@ -72,7 +72,7 @@ ul, li { list-style: none; padding: 0; margin: 0; }
 
 .bns_2 .ms_time { position: absolute; height: 100px; width: 21%; top: 10%; left: 21.6%; }
 
-.bns_2 .ms_time span { position: absolute; display: block; width: 30%; height: 20%; font-size: 16px; text-align: center; line-height: 20px; background-color: #CDCDCD; }
+.bns_2 .ms_time span { position: absolute; display: block; width: 30%; height: 20%; font-size: 12px; text-align: center; line-height: 20px; background-color: #CDCDCD; }
 
 .bns_2 .ms_time .hour { left: 2%; }
 
