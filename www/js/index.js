@@ -55,14 +55,18 @@ $(function(){
         startY: 0,
         winWidth: document.body.clientWidth,
         bannerIndex: 0,
-        bannerauto:null,
+        bannerauto:0,
+        bannerTouchType:"left",
         init:function(){
             var me = this;
             //初始化
             app.initialize();
             me.handTouch();
             me.initBanner();
+            me.bannerTouch();
             me.bnsBlock();
+            me.countDown();
+            me.initKcbfb();
         },
         //页眉和页脚交互实现
         handTouch:function(){
@@ -116,48 +120,82 @@ $(function(){
             clearInterval(me.bannerauto);
             me.bannerauto = setInterval(function(){
                 me.bannerSwipeLeft();
+                //me.bannerSwipeRight();
             },3000);
+        },
+        //banner定位
+        bannerPosition:function(index){
+            var me = this;
+            $('.banner_img').css({
+                '-webkit-transform': 'translateX('+(-index*me.winWidth)+'px)',
+                'transform': 'translateX('+(-index*me.winWidth)+'px)'
+            });
         },
         //banner手触左划实现
         bannerSwipeLeft:function(){
             var me = this;
             var bannerMax = $('#banner').find('li').length-2;
             var index = me.bannerIndex + 1;
-            if(index>=bannerMax){
+            if(index>bannerMax){
                 me.bannerIndex = 0;
                 index = me.bannerIndex + 1;
+                $('.banner_img').removeClass('active');
                 $('.banner_img').css({
-                '-webkit-transform': 'translateX('+(-index*me.winWidth)+'px)',
-                'transform': 'translateX('+(-index*me.winWidth)+'px)'
+                '-webkit-transform': 'translateX('+0+'px)',
+                'transform': 'translateX('+0+'px)'
                 });
-                me.bannerIndex++;
+                setTimeout(function(){
+                    $('.banner_img').addClass('active');
+                    me.bannerPosition(index);
+                    $('.circle').find('li').eq(index).addClass('cur').siblings().removeClass('cur');
+                },10);
             }
-            else{
-                //console.log(me.bannerIndex);
-                $('.banner_img').css({
-                '-webkit-transform': 'translateX('+(-index*me.winWidth)+'px)',
-                'transform': 'translateX('+(-index*me.winWidth)+'px)'
-                });
-                me.bannerIndex++;
-            }
+            else me.bannerPosition(index);
             if(index==bannerMax) index=0;
             $('.circle').find('li').eq(index).addClass('cur').siblings().removeClass('cur');
-            //console.log(me.bannerIndex);
-            if(me.bannerIndex==(bannerMax)){
-                    $('.banner_img').removeClass('active');
-                    $('.banner_img').css({
-                        '-webkit-transform': 'translateX('+0+'px)',
-                        'transform': 'translateX('+0+'px)'
-                    });
-                    setTimeout(function(){
-                        $('.banner_img').addClass('active');
-                        //alert(1);   
-                    },600);
-                }
+            me.bannerIndex++;
         },
         //banner手触右划实现
         bannerSwipeRight:function(){
-
+            var me = this;
+            var bannerMax = $('#banner').find('li').length-2;
+            var index = me.bannerIndex-1;
+            if(index<-1){
+                me.bannerIndex = bannerMax-1;
+                index = me.bannerIndex-1;
+                $('.banner_img').removeClass('active');
+                $('.banner_img').css({
+                '-webkit-transform': 'translateX('+(-bannerMax+1)*me.winWidth+'px)',
+                'transform': 'translateX('+(-bannerMax+1)*me.winWidth+'px)'
+                });
+                setTimeout(function(){
+                    $('.banner_img').addClass('active');
+                    me.bannerPosition(index);
+                    $('.circle').find('li').eq(index).addClass('cur').siblings().removeClass('cur');
+                },10);
+            }
+            else me.bannerPosition(index);
+            if(index==-1) index=bannerMax-1;
+            $('.circle').find('li').eq(index).addClass('cur').siblings().removeClass('cur');
+            me.bannerIndex--;
+        },
+        //手指触摸滑动banner
+        bannerTouch:function(){
+            var me = this;
+            var hammertime = new Hammer(document.getElementById("banner"));
+            hammertime.on("panleft panright",function(e){
+                //console.log(me.bannerIndex);
+                clearInterval(me.bannerauto);
+                switch(e.type){
+                    case 'panleft': me.bannerTouchType="left"; break;
+                    case 'panright': me.bannerTouchType="right"; break;
+                }
+            });
+            hammertime.on("panend", function(e){
+                if(me.bannerTouchType=="left") me.bannerSwipeLeft();
+                else me.bannerSwipeRight();
+                me.bannerauto = setInterval(function(){me.bannerSwipeLeft();},3000);
+            });
         },
         //帮你省模块实现
         bnsBlock:function(){
@@ -184,6 +222,58 @@ $(function(){
             $('.ex-container .back').click(function(){
                 $('.ex-container').removeClass('slidein');
             });
+        },
+        //秒杀倒计时的实现 2015－09-12 12:00
+        countDown:function(){
+            var time = setInterval(function(){
+                var me = this;
+                var now = new Date(); 
+                var endDate = new Date(2015,08,12,12,00,00); 
+                var leftTime=endDate.getTime()-now.getTime(); 
+                var leftsecond = parseInt(leftTime/1000);  
+                var hour=Math.floor(leftsecond/3600); 
+                var minute=Math.floor((leftsecond-hour*3600)/60); 
+                var second=Math.floor(leftsecond-hour*3600-minute*60);
+                if(hour>99) $('.ms_time span').width("34%");
+                if(0<=hour&&hour<10) hour="0"+hour;
+                if(0<=minute&&minute<10) minute="0"+minute;
+                if(0<=second&&second<10) second="0"+second;
+                if(hour==0&&minute==0&&second==0) clearInterval(time);
+                $('.ms_time .hour').html(hour);
+                $('.ms_time .minute').html(minute);
+                $('.ms_time .second').html(second);
+            },-1000);
+        },
+        //初始化库存百分比
+        initKcbfb:function(){
+            var me = this;
+            var wid = (me.winWidth-20)/3;
+            var text=null;
+            $('.kcbfb span').css({
+                'width':+wid*0.8+'px',
+                'margin':'0 '+wid*0.1+'px'
+            });
+            setInterval(function(){
+                me.kcbfbSwipe();
+            },1000);
+        },
+        //商品秒杀库存百分条效果实现
+        kcbfbSwipe:function(){
+            var me =this;
+            var num = $('.kcbfb').find('span').length;
+            for(var i=0;i<num;i++){
+                text = $('.kcbfb').find('span').eq(i).find('em').eq(0).html();
+                //console.log($('.kcbfb').find('span').eq(2).offset().left);
+                if($('.kcbfb').find('span').eq(i).offset().left<300){
+                    $('.kcbfb').find('span').eq(i).find('i').eq(0).css({
+                    'opacity':'1',
+                    'width': text
+                    });
+                    $('.kcbfb').find('span').eq(i).find('em').eq(0).css({
+                    'left': text
+                    });
+                }
+            }
         }
     };
     apptestDom.init();

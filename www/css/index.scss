@@ -127,8 +127,8 @@ ul ,li{
     right: 0;
     padding-top: 16.5%;
     z-index: 3;
-    transition: all 0.5s;
     -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .line{
     position: absolute;
@@ -139,8 +139,8 @@ ul ,li{
     height: 20px;
     opacity: 0;
     background-color: #000000;
-    transition: all 0.5s;
     -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .top{
     position: absolute;
@@ -176,8 +176,8 @@ ul ,li{
     right: 0;
 }
 .active{
-     transition: all 0.5s;
     -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .banner_img li{
     float:left;
@@ -219,29 +219,31 @@ ul ,li{
 }
 .bns_2 .ms_time{
     position:absolute;
-    height:100px;
-    width:21%;
-    top:10%;
-    left:21.6%;
+    height:6%;
+    width:23%;
+    top:9.5%;
+    left:22%;
+    background-color:#fff;
 }
 .bns_2 .ms_time span{
     position:absolute;
-    display: block;
-    width:30%;
-    height:20%;
-    font-size: 12px;
+    display: inline-block;
+    width:25%;
+    height:100%;
+    font-size: 13px;
     text-align: center;
-    line-height:20px;
-    background-color:#CDCDCD;
+    line-height:18px;
+    border:1px solid #c6c6c6;
+    background-color:#fafafa;
 }
 .bns_2 .ms_time .hour{
     left:2%;
 }
 .bns_2 .ms_time .minute{
-    left:35%;
+    left:40%;
 }
 .bns_2 .ms_time .second{
-    left:68%;
+    left:78%;
 }
 .bnt{
     position:relative;
@@ -256,17 +258,17 @@ ul ,li{
     bottom:0;
     left: 0;
     z-index: 3;
-    transition: all 0.5s;
     -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .slidedown{
-    transform:translateY(100%);
     -webkit-transform:translateY(100%);
+    transform:translateY(100%);
     opacity:0;
 }
 .slideup{
-    transform:translateY(-100%);
     -webkit-transform:translateY(-100%);
+    transform:translateY(-100%);
     opacity:0;
 }
 .slidetop{
@@ -287,6 +289,55 @@ ul ,li{
 }
 .bns_3 .its img{
     float:left;
+}
+.bns_3 .kcbfb{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:2px;
+    height:22px;
+    font-size: 12px;
+    line-height: 22px;
+    background-color:#fff;
+}
+.bns_3 .kcbfb span{
+    display: block;
+    position:relative;
+    height:100%;
+    float:left;
+}
+.bns_3 .kcbfb em{
+    font-style: normal;
+    display: block;
+    position:absolute;
+    padding-left:2px;
+    top:0;
+    color:red;
+    z-index:10;
+}
+.kcbfb span:before,.kcbfb i{
+    content: "";
+    display: block;
+    position:absolute;
+    left:0;
+    top:10px;
+    height:1px;
+    background-color:#f1f1f1;
+    opacity: 0.5;
+}
+.kcbfb span:before{
+    width:100%;
+}
+.kcbfb i{
+    width:0;
+    background-color:#ff0000;
+}
+.kcbfb em{
+    left:0;
+}
+.kcbfb em,.kcbfb i{
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .bns_4{
     position: relative;
