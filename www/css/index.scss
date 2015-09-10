@@ -163,9 +163,7 @@ ul ,li{
     left: 0;
     right: 0;
     padding-top: 16.5%;
-    z-index: 3;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
+    z-index: 7;
 }
 .line{
     position: absolute;
@@ -188,8 +186,8 @@ ul ,li{
     background-size: 100%;
     padding-top: 16.5%;
     text-align: center;
-    -webkit-transition: all 1s;
-    transition: all 1s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .top img{
     width:100%;
@@ -199,6 +197,8 @@ ul ,li{
     position:absolute;
     left:0;
     top:0;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .top .wrap{
     padding:0 20px;
@@ -207,6 +207,7 @@ ul ,li{
     position: relative;
     overflow: hidden;
     padding-top: 50%;
+    z-index: 5;
 }
 .banner_img{
     position: absolute;
@@ -225,7 +226,7 @@ ul ,li{
     position:absolute;
     left:45%;
     bottom:8px;
-    z-index: 2;
+    z-index: 3;
 }.banner .circle li{
     width:6px;
     height:6px;

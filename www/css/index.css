@@ -48,19 +48,19 @@ ul, li { list-style: none; padding: 0; margin: 0; }
 
 .bg_img .bg4 { background-image: url(../img/bg4.png); }
 
-.header { position: fixed; top: 0; left: 0; right: 0; padding-top: 16.5%; z-index: 3; -webkit-transition: all 0.5s; transition: all 0.5s; }
+.header { position: fixed; top: 0; left: 0; right: 0; padding-top: 16.5%; z-index: 7; }
 
 .line { position: absolute; left: 0; top: 0; display: block; width: 100%; height: 20px; opacity: 0; background-color: #000000; -webkit-transition: all 0.5s; transition: all 0.5s; }
 
-.top { position: absolute; width: 100%; left: 0; top: 0; background: url(../img/bg_top.png) no-repeat; background-size: 100%; padding-top: 16.5%; text-align: center; -webkit-transition: all 1s; transition: all 1s; }
+.top { position: absolute; width: 100%; left: 0; top: 0; background: url(../img/bg_top.png) no-repeat; background-size: 100%; padding-top: 16.5%; text-align: center; -webkit-transition: all 0.5s; transition: all 0.5s; }
 
 .top img { width: 100%; margin-top: 20px; }
 
-.wrap { position: absolute; left: 0; top: 0; }
+.wrap { position: absolute; left: 0; top: 0; -webkit-transition: all 0.5s; transition: all 0.5s; }
 
 .top .wrap { padding: 0 20px; }
 
-.banner { position: relative; overflow: hidden; padding-top: 50%; }
+.banner { position: relative; overflow: hidden; padding-top: 50%; z-index: 5; }
 
 .banner_img { position: absolute; left: 0; top: 0; right: 0; }
 
@@ -68,7 +68,7 @@ ul, li { list-style: none; padding: 0; margin: 0; }
 
 .banner_img li { float: left; }
 
-.banner .circle { position: absolute; left: 45%; bottom: 8px; z-index: 2; }
+.banner .circle { position: absolute; left: 45%; bottom: 8px; z-index: 3; }
 
 .banner .circle li { width: 6px; height: 6px; border-radius: 3px; background-color: #e1e1e2; margin-right: 5px; float: left; }
 

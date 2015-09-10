@@ -34,6 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        StatusBar.styleLightContent();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -56,7 +57,8 @@ $(function(){
         winWidth: document.body.clientWidth,
         bannerIndex: 0,
         bannerauto:0,
-        topLate:-1,
+        topLate:false,
+        topLateID:-1,
         bannerTouchType:"left",
         init:function(){
             var me = this;
@@ -85,18 +87,24 @@ $(function(){
                 y = touch.pageY - me.startY;
                 //console.log(me.startY+","+touch.pageY);
                 if(Math.abs(y)>Math.abs(x)){
-                    clearTimeout(me.topLate);
-                    $('.top').addClass("slideup");  
-                    $('#footer').addClass("slidedown");
-                    $('.line').addClass("slidetop");
+                    if(!me.topLate){
+                        $('.top').addClass("slideup"); 
+                        $('.top .wrap').addClass('slideup');
+                        $('#footer').addClass("slidedown");
+                        $('.line').addClass("slidetop");
+                        me.topLate=true;
+                    }
                 }
             });
             $('#container').on('touchend',function(e){
-                me.topLate=setTimeout(function(){
+                clearTimeout(me.topLateID);
+                me.topLateID=setTimeout(function(){
                     $('.top').removeClass("slideup");
+                    $('.top .wrap').removeClass("slideup");
                     $('#footer').removeClass("slidedown");
-                    $('.line').removeClass("slidetop");   
-                },500);
+                    $('.line').removeClass("slidetop");
+                    me.topLate=false;
+                },1000);
             });
         },
         //banner初始化
@@ -226,9 +234,14 @@ $(function(){
                     $('.blank').addClass("show");
                 }
                 $('.ex-container').addClass('slidein');
+                status
+                setTimeout(function(){
+                    StatusBar.styleDefault();    
+                },300);
             });
             $('.ex-container .back').click(function(){
                 $('.ex-container').removeClass('slidein');
+                StatusBar.styleLightContent();
             });
         },
         //秒杀倒计时的实现 2015－09-12 12:00
