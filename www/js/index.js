@@ -56,6 +56,7 @@ $(function(){
         winWidth: document.body.clientWidth,
         bannerIndex: 0,
         bannerauto:0,
+        topLate:-1,
         bannerTouchType:"left",
         init:function(){
             var me = this;
@@ -84,15 +85,18 @@ $(function(){
                 y = touch.pageY - me.startY;
                 //console.log(me.startY+","+touch.pageY);
                 if(Math.abs(y)>Math.abs(x)){
+                    clearTimeout(me.topLate);
                     $('.top').addClass("slideup");  
                     $('#footer').addClass("slidedown");
                     $('.line').addClass("slidetop");
                 }
             });
             $('#container').on('touchend',function(e){
-                $('.top').removeClass("slideup");
-                $('#footer').removeClass("slidedown");
-                $('.line').removeClass("slidetop");   
+                me.topLate=setTimeout(function(){
+                    $('.top').removeClass("slideup");
+                    $('#footer').removeClass("slidedown");
+                    $('.line').removeClass("slidetop");   
+                },500);
             });
         },
         //banner初始化
@@ -148,11 +152,13 @@ $(function(){
                     $('.banner_img').addClass('active');
                     me.bannerPosition(index);
                     $('.circle').find('li').eq(index).addClass('cur').siblings().removeClass('cur');
+                    $('.bg_img').find('span').eq(index).addClass('cur').siblings().removeClass('cur');
                 },10);
             }
             else me.bannerPosition(index);
             if(index==bannerMax) index=0;
             $('.circle').find('li').eq(index).addClass('cur').siblings().removeClass('cur');
+            $('.bg_img').find('span').eq(index).addClass('cur').siblings().removeClass('cur');
             me.bannerIndex++;
         },
         //banner手触右划实现
@@ -172,11 +178,13 @@ $(function(){
                     $('.banner_img').addClass('active');
                     me.bannerPosition(index);
                     $('.circle').find('li').eq(index).addClass('cur').siblings().removeClass('cur');
+                    $('.bg_img').find('span').eq(index).addClass('cur').siblings().removeClass('cur');
                 },10);
             }
             else me.bannerPosition(index);
             if(index==-1) index=bannerMax-1;
             $('.circle').find('li').eq(index).addClass('cur').siblings().removeClass('cur');
+            $('.bg_img').find('span').eq(index).addClass('cur').siblings().removeClass('cur');
             me.bannerIndex--;
         },
         //手指触摸滑动banner
